@@ -1,1 +1,3 @@
 # PodastawyInformatykiProjektBMI
+
+Testowa edycja
