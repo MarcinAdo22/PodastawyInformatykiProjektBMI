@@ -1,7 +1,7 @@
 import pandas
 
 excel = pandas.read_excel(r'listaBMI.xlsx')
-print(excel)
+
 osoby = excel.iloc
 
 for osoba in osoby:
