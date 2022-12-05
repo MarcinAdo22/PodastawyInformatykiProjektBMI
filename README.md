@@ -1,4 +1,4 @@
-# PodastawyInformatykiProjektBMI
+# PodstawyInformatykiProjektBMI
 
 Ewelina Dec
 Damian Wiercimak
