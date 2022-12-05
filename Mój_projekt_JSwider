@@ -1,0 +1,69 @@
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+bmiPlik = open("parametry.txt","r")
+bmiLista = []
+for _ in range(20):
+    plec, waga, wzrost = bmiPlik.readline().split()
+    bmiLista.append([plec, int(waga), int(wzrost)])
+print(bmiLista)
+
+l_wyglodzenie = 0
+l_wychudzenie = 0
+l_niedowaga = 0
+l_pozadana = 0
+l_nadwaga = 0
+l_I = 0
+l_II = 0
+l_III = 0
+
+
+for i in range(len(bmiLista)):
+    bmi = round(bmiLista[i][1]/((bmiLista[i][2]/100)*(bmiLista[i][2]/100)),2)
+    bmiLista[i].append(bmi)
+    if bmi < 16:
+        bmiLista[i].append("wygłodzenie")
+        l_wyglodzenie = l_wyglodzenie + 1
+    if bmi >= 16 and bmi <= 16.99:
+        bmiLista[i].append("wychudzenie")
+        l_wychudzenie = l_wychudzenie + 1
+    if bmi >= 17 and bmi <= 18.49:
+        bmiLista[i].append("niedowaga")
+        l_niedowaga = l_niedowaga + 1
+    if bmi >=18.50 and bmi <= 24.99:
+        bmiLista[i].append("pożądana masa ciała")
+        l_pozadana = l_pozadana + 1
+    if bmi >= 25 and bmi <= 29.99:
+        bmiLista[i].append("nadwaga")
+        l_nadwaga = l_nadwaga + 1
+    if bmi >= 30 and bmi <= 34.99:
+        bmiLista[i].append("otyłość I stopnia")
+        l_I = l_I + 1
+    if bmi >= 35 and bmi <= 39.99:
+        bmiLista[i].append("otyłość II stopnia (duża)")
+        l_II = l_II + 1
+    if bmi >= 40:
+        bmiLista[i].append("otyłość III stopnia (chorobliwa)")
+        l_III = l_III + 1
+'''print(bmiLista)'''
+
+
+height = [l_wyglodzenie, l_wychudzenie, l_niedowaga, l_pozadana, l_nadwaga, l_I, l_II, l_III]
+labels = ('wyglodzenie', 'wychudzenie', 'niedowaga', 'pozadana masa ciala', 'nadwaga', 'otylosc I stopnia', 'otylosc II stopnia', 'otylosc I stopnia')
+position = np.arange(len(height))
+
+plt.figure(figsize=(11, 6))
+
+plt.bar(position, height, color='red')
+
+plt.xticks(position, labels)
+
+plt.xlabel('kategoria', fontsize=12)
+plt.ylabel('liczba osob', fontsize=12)
+
+
+plt.bar(labels, height)
+
+plt.show()
